@@ -4,329 +4,313 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
   <title>🧠 Профилактика радикализации · 9 часов · narven_olgui</title>
+  <!-- Шрифт Inter для чистого стиля -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
   <style>
     * {
-      box-sizing: border-box;
       margin: 0;
       padding: 0;
+      box-sizing: border-box;
     }
 
     body {
-      font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+      font-family: 'Inter', sans-serif;
       background: #eef2f6;
       display: flex;
       align-items: center;
       justify-content: center;
       min-height: 100vh;
-      padding: 16px;
+      padding: 18px;
       margin: 0;
     }
 
-    /* основной контейнер — теперь фиксированная высота, чтобы всё влезало */
-    .app {
-      max-width: 1360px;
+    /* Основной контейнер — как элитный планшет */
+    .presentation {
+      max-width: 1400px;
       width: 100%;
-      height: 880px;
-      max-height: 95vh;
+      height: 920px;
+      max-height: 96vh;
+      background: #ffffff;
+      border-radius: 36px;
+      box-shadow: 0 30px 50px -15px rgba(0, 20, 40, 0.25);
       display: flex;
       flex-direction: column;
-      background: #ffffff;
-      border-radius: 28px;
-      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
       overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.6);
       backdrop-filter: blur(2px);
-      border: 1px solid rgba(255,255,255,0.3);
     }
 
-    /* шапка — компактная */
-    .app-header {
-      background: linear-gradient(135deg, #0b2b4a 0%, #1a3f5c 100%);
+    /* Шапка с заголовком и вкладками */
+    .top-bar {
+      background: linear-gradient(145deg, #0a233a 0%, #123a54 100%);
       color: white;
-      padding: 16px 28px;
+      padding: 18px 28px 8px 28px;
       flex-shrink: 0;
     }
-    .app-header h1 {
-      font-weight: 600;
-      font-size: 1.7rem;
-      letter-spacing: -0.02em;
-      margin-bottom: 4px;
-    }
-    .app-header .sub {
-      opacity: 0.85;
-      font-size: 0.9rem;
-      display: flex;
-      gap: 20px;
-    }
 
-    /* основная панель — флекс-строка */
-    .main-panel {
-      display: flex;
-      flex: 1;
-      min-height: 0;  /* важно для flex-сжатия */
-      background: #fbfdff;
-    }
-
-    /* левая навигация — теперь чуть уже, но вместительно */
-    .module-nav {
-      width: 260px;
-      background: #f4f7fc;
-      border-right: 1px solid #dee7ef;
-      padding: 20px 0;
-      overflow-y: auto;
-      flex-shrink: 0;
-    }
-    .module-nav h3 {
-      padding: 0 16px 14px;
-      font-weight: 600;
-      color: #1a3f5c;
-      font-size: 0.9rem;
-      text-transform: uppercase;
-      letter-spacing: 0.4px;
-      opacity: 0.8;
-    }
-    .module-list {
-      list-style: none;
-    }
-    .module-item {
-      padding: 12px 16px;
-      margin: 2px 8px;
-      border-radius: 16px;
-      font-weight: 500;
-      color: #1e293b;
-      cursor: pointer;
-      transition: all 0.15s;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      background: transparent;
-      border: 1px solid transparent;
-    }
-    .module-item .badge {
-      background: #cbd5e1;
-      color: #0f172a;
-      border-radius: 30px;
-      padding: 2px 10px;
-      font-size: 0.75rem;
-      font-weight: 600;
-    }
-    .module-item:hover {
-      background: #e0e9f2;
-      border-color: #bac8d9;
-    }
-    .module-item.active {
-      background: #0b2b4a;
-      color: white;
-      border-color: #2563eb;
-    }
-    .module-item.active .badge {
-      background: #3b82f6;
-      color: white;
-    }
-
-    /* правая область со слайдами */
-    .slides-area {
-      flex: 1;
-      padding: 20px 24px;
-      display: flex;
-      flex-direction: column;
-      min-width: 0;
-      background: #ffffff;
-    }
-
-    .module-title {
-      font-size: 1.8rem;
+    .title-section h1 {
       font-weight: 700;
-      color: #0b2b4a;
+      font-size: 1.9rem;
+      letter-spacing: -0.02em;
       margin-bottom: 6px;
+    }
+
+    .title-section .subhead {
+      font-weight: 400;
+      opacity: 0.85;
+      font-size: 0.95rem;
+      display: flex;
+      gap: 24px;
+      margin-bottom: 14px;
+    }
+
+    /* Вкладки модулей */
+    .tabs-container {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: 6px;
+    }
+
+    .tab-btn {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.15);
+      color: #e0edf5;
+      padding: 10px 22px;
+      border-radius: 60px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: all 0.2s;
+      backdrop-filter: blur(4px);
       letter-spacing: -0.01em;
     }
-    .module-meta {
+
+    .tab-btn:hover {
+      background: rgba(255,255,255,0.18);
+      color: white;
+      border-color: rgba(255,255,255,0.3);
+    }
+
+    .tab-btn.active {
+      background: white;
+      color: #0a233a;
+      border-color: white;
+      box-shadow: 0 6px 12px -6px rgba(0,0,0,0.2);
+    }
+
+    /* Основная область со слайдами */
+    .slide-deck {
+      flex: 1;
+      background: #fbfdff;
+      padding: 24px 32px 20px 32px;
       display: flex;
-      gap: 20px;
-      color: #5e7180;
-      margin-bottom: 16px;
-      border-bottom: 1px solid #e2e8f0;
+      flex-direction: column;
+      min-height: 0;
+    }
+
+    /* Информация о текущем занятии */
+    .lesson-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      border-bottom: 1px solid #dde5ed;
       padding-bottom: 12px;
+      margin-bottom: 18px;
+    }
+
+    .lesson-header h2 {
+      font-weight: 700;
+      font-size: 2rem;
+      color: #0a233a;
+      letter-spacing: -0.02em;
+    }
+
+    .lesson-meta {
+      color: #4a627a;
+      font-weight: 500;
+      background: #e9f0f7;
+      padding: 5px 16px;
+      border-radius: 30px;
       font-size: 0.9rem;
     }
 
-    /* контейнер слайда — занимает всё доступное пространство */
-    .slide-container {
+    /* Карточка слайда */
+    .slide-card {
+      background: #ffffff;
+      border-radius: 28px;
+      padding: 24px 32px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.04), 0 0 0 1px rgba(0,0,0,0.01);
+      border: 1px solid #edf2f8;
       flex: 1;
-      background: #fafcff;
-      border-radius: 24px;
-      padding: 20px 24px;
-      box-shadow: inset 0 2px 4px rgba(0,0,0,0.02), 0 4px 12px -4px rgba(0,20,40,0.08);
-      border: 1px solid #e7edf4;
-      margin-bottom: 12px;
-      overflow-y: auto;  /* на случай, если контент больше, но мы стараемся чтобы влезало */
+      overflow-y: auto;
       scrollbar-width: thin;
-    }
-
-    .slide-content {
-      min-height: 100%;
+      margin-bottom: 12px;
     }
 
     .slide-content h2 {
-      font-size: 1.7rem;
-      color: #0f2b40;
-      margin-bottom: 16px;
-      border-left: 6px solid #2563eb;
-      padding-left: 18px;
-      font-weight: 600;
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #0f2e47;
+      margin-bottom: 18px;
+      border-left: 7px solid #1e5b9e;
+      padding-left: 22px;
     }
+
     .slide-content h3 {
-      font-size: 1.2rem;
-      margin: 20px 0 10px;
-      color: #1e3a5f;
+      font-size: 1.3rem;
       font-weight: 600;
+      margin: 22px 0 12px;
+      color: #1e405e;
     }
-    .slide-content ul, .slide-content ol {
-      padding-left: 24px;
-      margin: 12px 0;
-      line-height: 1.5;
-    }
-    .slide-content li {
-      margin-bottom: 6px;
-    }
+
     .slide-content p {
+      line-height: 1.55;
+      margin-bottom: 16px;
+      color: #1f3a4e;
+    }
+
+    .slide-content ul, .slide-content ol {
+      padding-left: 26px;
+      margin: 16px 0;
+    }
+
+    .slide-content li {
+      margin-bottom: 8px;
       line-height: 1.5;
-      margin-bottom: 14px;
-      color: #2c3e50;
     }
 
-    .card-grid {
+    .highlight-box {
+      background: #eef4ff;
+      border-left: 6px solid #2a6bb0;
+      padding: 18px 24px;
+      border-radius: 18px;
+      margin: 22px 0;
+    }
+
+    .grid-2col {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-      gap: 14px;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
       margin: 18px 0;
-    }
-    .info-card {
-      background: white;
-      border-radius: 18px;
-      padding: 16px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.02);
-      border: 1px solid #e2eaf2;
-    }
-    .info-card strong {
-      display: block;
-      font-size: 1.1rem;
-      margin-bottom: 6px;
-      color: #0b2b4a;
-    }
-    .highlight {
-      background: #e8f0fe;
-      padding: 14px 18px;
-      border-radius: 18px;
-      margin: 18px 0;
-      border-left: 4px solid #2563eb;
-      color: #1e293b;
     }
 
-    /* пагинация */
-    .slide-controls {
+    .stat-card {
+      background: #f6faff;
+      border-radius: 22px;
+      padding: 20px;
+      border: 1px solid #dbe4f0;
+    }
+
+    .badge-lg {
+      background: #0a233a;
+      color: white;
+      padding: 3px 14px;
+      border-radius: 30px;
+      font-weight: 600;
+      display: inline-block;
+      font-size: 0.85rem;
+    }
+
+    /* Пагинация */
+    .slide-nav {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      margin-top: 4px;
-      flex-shrink: 0;
-    }
-    .nav-buttons {
-      display: flex;
-      gap: 10px;
-    }
-    .nav-btn {
-      background: white;
-      border: 1px solid #cbd5e1;
-      border-radius: 30px;
-      padding: 6px 18px;
-      font-weight: 500;
-      font-size: 0.9rem;
-      cursor: pointer;
-      transition: all 0.1s;
-      color: #1e293b;
-      box-shadow: 0 1px 2px rgba(0,0,0,0.02);
-    }
-    .nav-btn:hover {
-      background: #0b2b4a;
-      color: white;
-      border-color: #0b2b4a;
-    }
-    .nav-btn:disabled {
-      opacity: 0.4;
-      pointer-events: none;
-    }
-    .slide-indicator {
-      font-weight: 500;
-      color: #475569;
-      background: #f1f5f9;
-      padding: 4px 16px;
-      border-radius: 40px;
-      font-size: 0.9rem;
+      margin-top: 6px;
     }
 
-    /* копирайт */
-    .copyright {
+    .nav-arrows button {
+      background: white;
+      border: 1px solid #cbd6e4;
+      border-radius: 40px;
+      padding: 8px 22px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: #1e3a5f;
+      cursor: pointer;
+      margin-right: 10px;
+      transition: all 0.15s;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+    }
+
+    .nav-arrows button:hover:not(:disabled) {
+      background: #0a233a;
+      color: white;
+      border-color: #0a233a;
+    }
+
+    .nav-arrows button:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+
+    .page-indicator {
+      font-weight: 500;
+      color: #2b4a66;
+      background: #ecf3fa;
+      padding: 6px 22px;
+      border-radius: 40px;
+    }
+
+    /* Копирайт */
+    .copyright-bar {
       text-align: right;
       font-size: 0.8rem;
-      color: #7c8b9c;
-      margin-top: 4px;
-      padding-right: 4px;
-      flex-shrink: 0;
+      color: #6b85a0;
+      padding-right: 6px;
+      margin-top: 6px;
     }
-    .copyright a {
-      color: #2563eb;
+    .copyright-bar a {
+      color: #1e5b9e;
       text-decoration: none;
-      font-weight: 500;
+      font-weight: 600;
     }
 
-    /* адаптив */
-    @media (max-width: 900px) {
-      .app { height: auto; max-height: none; }
-      .main-panel { flex-direction: column; }
-      .module-nav { width: 100%; border-right: none; border-bottom: 1px solid #dee7ef; }
-      .module-list { display: flex; flex-wrap: wrap; padding: 0 4px; }
-      .module-item { flex: 1 0 auto; }
+    /* Адаптив */
+    @media (max-width: 850px) {
+      .presentation { height: auto; max-height: none; }
+      .grid-2col { grid-template-columns: 1fr; }
+      .tabs-container { overflow-x: auto; padding-bottom: 4px; }
     }
   </style>
 </head>
 <body>
-<div class="app">
-  <div class="app-header">
-    <h1>🛡️ Профилактика радикализации и деструктивных установок</h1>
-    <div class="sub">
-      <span>Повышение квалификации · 9 ак. часов</span>
-      <span>Индивидуальная программа 14–18 лет</span>
+<div class="presentation">
+  <div class="top-bar">
+    <div class="title-section">
+      <h1>🧬 Профилактика радикализации и деструктивных установок</h1>
+      <div class="subhead">
+        <span>Повышение квалификации · 9 ак. часов</span>
+        <span>Индивидуальная программа 14–18 лет · ГБУ ГППЦ ДОНМ</span>
+      </div>
     </div>
+    <!-- Вкладки модулей -->
+    <div class="tabs-container" id="tabContainer"></div>
   </div>
 
-  <div class="main-panel">
-    <!-- Левая навигация -->
-    <div class="module-nav">
-      <h3>📌 Модули курса</h3>
-      <ul class="module-list" id="moduleList"></ul>
+  <div class="slide-deck">
+    <div class="lesson-header">
+      <h2 id="lessonTitle">Занятие 1 · Теория и структура</h2>
+      <div class="lesson-meta" id="lessonMeta">⏱️ 2 часа · Факторы риска, диагностика</div>
     </div>
 
-    <!-- Правая часть со слайдами -->
-    <div class="slides-area">
-      <div class="module-title" id="moduleTitle">Занятие 1 · Теория и структура</div>
-      <div class="module-meta" id="moduleMeta">⏱️ 2 часа · Факторы риска, диагностика, контакт</div>
+    <div class="slide-card">
+      <div class="slide-content" id="slideContent"></div>
+    </div>
 
-      <div class="slide-container">
-        <div class="slide-content" id="slideContent"></div>
+    <div class="slide-nav">
+      <div class="nav-arrows">
+        <button id="prevSlideBtn">← Предыдущий слайд</button>
+        <button id="nextSlideBtn">Следующий слайд →</button>
       </div>
-
-      <div class="slide-controls">
-        <div class="nav-buttons">
-          <button class="nav-btn" id="prevSlideBtn">← Предыдущий</button>
-          <button class="nav-btn" id="nextSlideBtn">Следующий →</button>
-        </div>
-        <div class="slide-indicator" id="slideIndicator">Слайд 1 / 5</div>
-      </div>
-      <div class="copyright">
-        <span>© narven_olgui · </span>
-        <a href="#" onclick="return false;">методическая разработка</a>
-      </div>
+      <div class="page-indicator" id="pageIndicator">Слайд 1 / 6</div>
+    </div>
+    <div class="copyright-bar">
+      <span>© narven_olgui · методическая разработка · </span>
+      <a href="#" onclick="return false;">ГБУ ГППЦ ДОНМ</a>
     </div>
   </div>
 </div>
@@ -335,191 +319,201 @@
   (function(){
     "use strict";
 
-    // ---------- МОДУЛИ ----------
+    // ---------- МОДУЛИ (вкладки) ----------
     const modules = [
-      { id: 'm1', name: '1. Теория и структура', duration: '2 ч', meta: '⏱️ 2 часа · Факторы риска, диагностика, контакт' },
-      { id: 'm2', name: '2. Бинарное мышление и ценности', duration: '1.5 ч', meta: '⏱️ 1.5 ч · Занятия 1–2 (Спектр, Кто я)' },
-      { id: 'm3', name: '3. Эмпатия и потребности', duration: '1.5 ч', meta: '⏱️ 1.5 ч · Занятия 3–4 (Другой, Пирамида)' },
-      { id: 'm4', name: '4. Манипуляции и цена насилия', duration: '1.5 ч', meta: '⏱️ 1.5 ч · Занятия 5–6 (Стоп-мыслитель, Круги)' },
-      { id: 'm5', name: '5. Идентичность и будущее', duration: '1.5 ч', meta: '⏱️ 1.5 ч · Занятия 7–9 (Ресурсы, Дилеммы, Карта)' },
-      { id: 'm6', name: '6. Итоговая аттестация', duration: '1 ч', meta: '⏱️ 1 час · Зачёт, демонстрация, сертификаты' }
+      { id: 'm1', short: 'Занятие 1', name: 'Занятие 1 · Теория и структура', meta: '⏱️ 2 часа · Факторы риска, диагностика, контакт' },
+      { id: 'm2', short: 'Занятие 2', name: 'Занятие 2 · Бинарное мышление и ценности', meta: '⏱️ 1.5 ч · Занятия 1–2 (Спектр, Кто я)' },
+      { id: 'm3', short: 'Занятие 3', name: 'Занятие 3 · Эмпатия и потребности', meta: '⏱️ 1.5 ч · Занятия 3–4 (Другой, Пирамида)' },
+      { id: 'm4', short: 'Занятие 4', name: 'Занятие 4 · Манипуляции и цена насилия', meta: '⏱️ 1.5 ч · Занятия 5–6 (Стоп-мыслитель, Круги)' },
+      { id: 'm5', short: 'Занятие 5', name: 'Занятие 5 · Идентичность и будущее', meta: '⏱️ 1.5 ч · Занятия 7–9 (Ресурсы, Дилеммы, Карта)' },
+      { id: 'm6', short: 'Занятие 6', name: 'Занятие 6 · Итоговая аттестация', meta: '⏱️ 1 час · Зачёт, демонстрация, сертификаты' }
     ];
 
-    // ---------- СЛАЙДЫ (HTML) ----------
+    // ---------- ПОДРОБНЫЕ СЛАЙДЫ (ГОРОДСКОЙ УРОВЕНЬ) ----------
     const slidesData = {
       m1: [
-        `<h2>📌 Занятие 1 · Теоретические основы</h2>
-         <p><strong>Темы:</strong> факторы радикализации, логика программы, диагностика, работа с сопротивлением.</p>
-         <div class="highlight">🔍 <strong>Когнитивная vs поведенческая радикализация</strong> (Хломов К.Д.) — усвоение идей ≠ участие в насилии.</div>
-         <h3>🧩 Трёхуровневая модель уязвимости</h3>
-         <ul><li><strong>Индивидуальный:</strong> кризис идентичности, чёрно-белое мышление, неудовлетворённые потребности.</li>
-         <li><strong>Социальный:</strong> давление группы, поиск «семьи», онлайн-сообщества.</li>
-         <li><strong>Структурный:</strong> дискриминация, несправедливость.</li></ul>`,
+        `<h2>📌 Факторы радикализации: трёхуровневая модель</h2>
+         <div class="highlight-box"><strong>Когнитивная vs поведенческая радикализация</strong> (Хломов К.Д., 2021). Идеология ≠ прямое действие.</div>
+         <div class="grid-2col">
+           <div class="stat-card"><strong>🔹 Индивидуальный</strong><br>▪ Кризис идентичности<br>▪ Чёрно-белое мышление<br>▪ Неудовлетворённые потребности<br>▪ Моральное отстранение</div>
+           <div class="stat-card"><strong>🔸 Социальный</strong><br>▪ Давление референтной группы<br>▪ Поиск «семьи»<br>▪ Онлайн-вербовка</div>
+           <div class="stat-card"><strong>🔹 Структурный</strong><br>▪ Воспринимаемая несправедливость<br>▪ Дискриминация<br>▪ Экономическая депривация</div>
+         </div>
+         <p><span class="badge-lg">Исследования: Реан А.А., Собкин В.С.</span></p>`,
          
         `<h2>📋 Структура подростковой программы (9 занятий)</h2>
-         <div class="card-grid">
-           <div class="info-card"><strong>1–3</strong> Мышление, ценности, эмпатия<br>«Спектр», «Кто я?», «Другой как я»</div>
-           <div class="info-card"><strong>4–6</strong> Потребности, манипуляции, насилие<br>«Пирамида», «Осторожно», «Цена»</div>
-           <div class="info-card"><strong>7–9</strong> Интеграция и будущее<br>«Разнообразие», «Ответственность», «Мой путь»</div>
+         <p><strong>Логика:</strong> от осознания ограничений мышления → к построению позитивного будущего.</p>
+         <div class="grid-2col">
+           <div class="stat-card"><strong>Блок 1 (зан. 1–3)</strong> «Спектр», «Кто я?», «Другой как я» — работа с когнициями и эмпатией.</div>
+           <div class="stat-card"><strong>Блок 2 (зан. 4–6)</strong> «Пирамида», «Осторожно: манипуляции», «Цена насилия» — потребности, защита, последствия.</div>
+           <div class="stat-card"><strong>Блок 3 (зан. 7–9)</strong> «Разнообразие как ресурс», «Ответственный выбор», «Мой путь» — интеграция и будущее.</div>
          </div>
-         <h3>📊 Диагностический минимум</h3>
-         <ul><li>Шкала ксенофобских установок (ОКУ, Гурина)</li><li>Опросник Басса-Дарки (агрессия)</li><li>Шкала бинарного мышления</li><li>Экспресс-диагностика эмпатии (Юсупов)</li><li>Скрининг акцентуаций (Личко)</li></ul>`,
+         <p>⏱️ 60 минут каждое занятие, индивидуально.</p>`,
          
-        `<h2>🤝 Установление контакта и сопротивление</h2>
+        `<h2>📊 Диагностический пакет (вход / итог)</h2>
+         <ul>
+           <li><strong>Шкала оценки ксенофобских установок (ОКУ, Гурина О.Д.)</strong> — враждебность к «чужим».</li>
+           <li><strong>Опросник Басса-Дарки</strong> — виды агрессии.</li>
+           <li><strong>Авторская шкала бинарного мышления</strong> (на основе Бека).</li>
+           <li><strong>Экспресс-диагностика эмпатии (Юсупов И.М.)</strong>.</li>
+           <li><strong>Скрининг акцентуаций (Личко А.Е.)</strong> — возбудимый, неустойчивый типы.</li>
+         </ul>
+         <p class="highlight-box">➕ Качественные показатели: речь, альтернативы, планы.</p>`,
+         
+        `<h2>🤝 Установление контакта и работа с сопротивлением</h2>
          <p><strong>Принципы:</strong> безоценочность, конфиденциальность, клиентоцентрированность.</p>
-         <div class="highlight">🛡️ Стратегии при сопротивлении:
-           <ul><li>Молчание → нормализация, альтернативы (рисунок).</li>
-           <li>Обесценивание → присоединение, прояснение.</li>
-           <li>Агрессия → отражение чувств, удержание границ.</li>
-         </ul></div>
-         <h3>📎 Практическая работа с кейсами</h3>
-         <p>Определить факторы уязвимости и выбрать методики диагностики.</p>`,
+         <div class="highlight-box">
+           <strong>🛡️ Стратегии при сопротивлении:</strong>
+           <ul><li>Молчание → «Я вижу, тебе трудно говорить. Можем просто посидеть».</li>
+           <li>Обесценивание → «Возможно, со стороны странно. Давай 15 минут попробуем».</li>
+           <li>Агрессия → отражение чувств, удержание границ.</li></ul>
+         </div>`,
          
-        `<h2>🧪 Кейс-пример (Алексей, 15 лет)</h2>
+        `<h2>🧪 Практическая работа: кейс «Алексей, 15 лет»</h2>
          <p>Закрытые группы, высказывания «слабакам не место», напряжённые отношения с родителями.</p>
-         <ul><li>Факторы: кризис идентичности, ч/б мышление, потребность в принадлежности.</li>
-         <li>Методики: ОКУ, Басса-Дарки, шкала бинарного мышления, скрининг акцентуаций.</li></ul>
-         <p><em>Обсуждение в парах: 15 минут.</em></p>`,
+         <p><strong>Факторы уязвимости:</strong> кризис идентичности, ч/б мышление, потребность в принадлежности.</p>
+         <p><strong>Рекомендуемые методики:</strong> ОКУ, Басса-Дарки, шкала бинарного мышления, скрининг акцентуаций.</p>
+         <p><em>Обсуждение в парах — 15 минут.</em></p>`,
          
-        `<h2>📚 Итоги 1-го занятия</h2>
-         <p>✔️ Разобрали факторы радикализации и мишени профилактики.<br>✔️ Знаем структуру программы и диагностику.<br>✔️ Освоили приёмы работы с сопротивлением.</p>
-         <p><strong>Домашнее задание:</strong> подготовиться к практикуму — вспомнить техники активного слушания.</p>`
+        `<h2>📚 Итоги первого занятия</h2>
+         <p>✔ Освоена трёхуровневая модель факторов.<br>✔ Изучена структура и диагностика программы.<br>✔ Отработаны приёмы снижения сопротивления.</p>
+         <p><strong>Домашнее задание:</strong> подготовить активное слушание к практикуму.</p>`
       ],
       m2: [
-        `<h2>🎯 Занятие 2 · Бинарное мышление и ценности</h2>
+        `<h2>🎯 Бинарное мышление и ценности</h2>
          <h3>Упражнение «Карта спектра»</h3>
-         <p><strong>Цель:</strong> показать множество альтернатив между агрессией и бездействием.</p>
-         <p>🔹 Линия, левый край – агрессия, правый – избегание. Подросток заполняет 10+ вариантов.</p>
-         <p><em>Пример: конфликт с соседкой из-за музыки.</em></p>`,
+         <p><strong>Цель:</strong> разрушить чёрно-белое мышление, показать альтернативы.</p>
+         <p>📏 Линия: левый край — агрессия, правый — избегание. Заполнить 10+ вариантов.</p>
+         <p><em>Пример: конфликт с соседкой из-за музыки во дворе.</em></p>`,
          
-        `<h2>🗺️ «Карта спектра» – демонстрация</h2>
-         <p>Психолог задаёт вопросы, не оценивает идеи. Визуализация на доске.</p>
-         <div class="highlight">💬 «Какой вариант самый реалистичный? Почему в гневе мы не видим середину?»</div>
-         <p>После – отработка в парах с карточками ситуаций (10 мин).</p>`,
+        `<h2>🗺️ «Карта спектра» — демонстрация</h2>
+         <div class="highlight-box">💬 Вопросы: «Какой вариант самый реалистичный? Почему в гневе мы не видим середину?»</div>
+         <p>Психолог фиксирует все идеи без оценки. Отработка в парах (10 мин).</p>`,
          
         `<h2>🔄 «Круги идентичности»</h2>
-         <p><strong>Цель:</strong> показать многогранность «Я», снизить страх потери радикальной роли.</p>
-         <p>В центре «Я», вокруг круги: сын, друг, спортсмен, музыкант… Размер = важность.</p>
-         <p>Вопрос: «Если один круг исчезнет, кто ты?»</p>`,
+         <p>Центр «Я», вокруг круги ролей: сын, друг, спортсмен, музыкант… Размер = важность.</p>
+         <p><strong>Вопрос:</strong> «Если один круг исчезнет, кто ты?» — показать многомерность.</p>`,
          
         `<h2>💎 «Магазин ценностей»</h2>
-         <p>Набор из 20 карточек. Выбрать 5 → 3 → 1 самую важную ценность.</p>
-         <p><strong>Ключевой вопрос:</strong> «Можно ли достичь этой ценности через насилие?»</p>`,
+         <p>20 карточек → выбрать 5 → 3 → 1. <strong>Ключевой вопрос:</strong> «Можно ли достичь этой ценности через насилие?»</p>
+         <p>Пример: «справедливость» — убивая других? «безопасность» — уничтожая «чужих»?</p>`,
          
-        `<h2>📝 Трудности и памятка</h2>
-         <ul><li>Если «не знаю» – предложить пофантазировать.</li><li>Если выбирает «силу» – уточнить: «Что значит сила? Кого считаешь сильным?»</li></ul>
-         <p>✅ Раздали памятку «Типичные трудности».</p>`
+        `<h2>📝 Типичные трудности и решения</h2>
+         <ul><li>«Не знаю» — предложить пофантазировать.</li><li>Выбрал «силу» — уточнить: «Что значит сила? Кого считаешь сильным?»</li></ul>
+         <p>✅ Раздаётся памятка «Типичные трудности».</p>`
       ],
       m3: [
-        `<h2>🤲 Занятие 3 · Эмпатия и потребности</h2>
-         <h3>«Точка зрения»</h3>
-         <p>Анализ конфликта от лица всех участников: жертва, агрессор, наблюдатель.</p>`,
-        `<h2>📸 «Интервью с незнакомцем»</h2><p>Фото человека из стигматизированной группы, 5–7 вопросов.</p>`,
-        `<h2>🏔️ «Моя пирамида» (Маслоу)</h2><p>Оценка уровней, связь с вербовкой, здоровые альтернативы.</p>`,
-        `<h2>🛠️ Отработка в парах</h2><p>Каждый пробует провести упражнение с «подростком».</p>`,
-        `<h2>📌 Памятка</h2><ul><li>Не морализировать, задавать открытые вопросы.</li></ul>`
+        `<h2>🤲 Эмпатия и потребности</h2><h3>«Точка зрения»</h3><p>Анализ конфликта (автобус) от лица жертвы, агрессора, наблюдателя.</p>`,
+        `<h2>📸 «Интервью с незнакомцем»</h2><p>Фото человека из стигматизированной группы. 5–7 вопросов, ответы психолога разрушают стереотипы.</p>`,
+        `<h2>🏔️ «Моя пирамида» (Маслоу)</h2><p>Оценка 5 уровней (1–10). Связь «голодных» потребностей с обещаниями радикалов.</p>`,
+        `<h2>🔍 Поиск здоровых альтернатив</h2><p>Принадлежность → спорт, кружки; уважение → достижения; смысл → волонтёрство.</p>`,
+        `<h2>📌 Памятка</h2><ul><li>Не морализировать, открытые вопросы.</li><li>Если отрицание — спросить о желаниях.</li></ul>`
       ],
       m4: [
-        `<h2>⚠️ Занятие 4 · Манипуляции и цена насилия</h2><h3>«Анатомия манипуляции»</h3><p>Приёмы: эмоции, ярлыки, образ врага.</p>`,
-        `<h2>🛑 «Стоп-мыслитель»</h2><p>4 вопроса: чувства, давление, факты, кому выгодно.</p>`,
-        `<h2>🎭 «Вербовщик и мишень»</h2><p>Ролевая игра, отработка устойчивости.</p>`,
-        `<h2>💔 «Круги последствий»</h2><p>Жертва, насильник, общество — цена насилия.</p>`,
-        `<h2>📋 Памятка</h2><p>Анализ формы, личные последствия.</p>`
+        `<h2>⚠️ Манипуляции и цена насилия</h2><h3>«Анатомия манипуляции»</h3><p>Приёмы: эмоциональное давление, ярлыки, образ врага, подмена понятий.</p>`,
+        `<h2>🛑 «Стоп-мыслитель»</h2><p>4 вопроса: Что чувствую? На что давят? Факты? Кому выгодно?</p>`,
+        `<h2>🎭 Ролевая игра «Вербовщик и мишень»</h2><p>Психолог — вербовщик, подросток учится противостоять.</p>`,
+        `<h2>💔 «Круги последствий»</h2><p>Центр: акт насилия. Круги: Жертва, Насильник, Общество.</p>`,
+        `<h2>📋 Памятка</h2><p>Анализировать форму, не спорить о содержании. Апеллировать к личным потерям.</p>`
       ],
       m5: [
-        `<h2>🌟 Занятие 5 · Идентичность и будущее</h2><h3>«Карта ресурсов»</h3><p>Сферы жизни → потребности.</p>`,
-        `<h2>⚖️ «Моральные дилеммы»</h2><p>Анализ выбора, ответственность.</p>`,
-        `<h2>🗺️ «Ресурсная карта» и ритуал</h2><p>Конкретные имена, телефоны, символическое завершение.</p>`,
-        `<h2>📦 «Контракт с собой»</h2><p>Личные обязательства.</p>`,
+        `<h2>🌟 Идентичность и будущее</h2><h3>«Карта ресурсов»</h3><p>Потребности ↔ сферы жизни (семья, хобби).</p>`,
+        `<h2>⚖️ «Моральные дилеммы»</h2><p>Анализ выбора, последствия, ответственность.</p>`,
+        `<h2>🗺️ «Ресурсная карта» и ритуал</h2><p>Конкретные имена, места, телефоны. Символическое завершение.</p>`,
+        `<h2>📦 «Контракт с собой»</h2><p>Личные обязательства на будущее.</p>`,
         `<h2>✅ Завершение программы</h2><p>Интеграция, профилактика рецидивов.</p>`
       ],
       m6: [
         `<h2>🎓 Итоговая аттестация (1 час)</h2><p>Демонстрация упражнения 5 мин + самоанализ 2 мин.</p>`,
-        `<h2>📊 Критерии оценки</h2><ul><li>Инструкция, гибкость, безоценочность, рефлексия.</li></ul>`,
+        `<h2>📊 Критерии оценки</h2><ul><li>Точность инструкции</li><li>Гибкость, безоценочность</li><li>Рефлексия</li></ul>`,
         `<h2>🏅 Вручение сертификатов</h2><p>Поздравление, напутствие.</p>`,
         `<h2>📚 Рекомендации</h2><p>Использовать полный комплект материалов.</p>`,
         `<h2>✨ Спасибо за работу!</h2><p><strong>Детский телефон доверия: 8-800-2000-122</strong></p>`
       ]
     };
 
-    // ---------- DOM элементы ----------
-    const moduleListEl = document.getElementById('moduleList');
-    const moduleTitleEl = document.getElementById('moduleTitle');
-    const moduleMetaEl = document.getElementById('moduleMeta');
-    const slideContentEl = document.getElementById('slideContent');
-    const slideIndicator = document.getElementById('slideIndicator');
+    // DOM элементы
+    const tabContainer = document.getElementById('tabContainer');
+    const lessonTitle = document.getElementById('lessonTitle');
+    const lessonMeta = document.getElementById('lessonMeta');
+    const slideContent = document.getElementById('slideContent');
+    const pageIndicator = document.getElementById('pageIndicator');
     const prevBtn = document.getElementById('prevSlideBtn');
     const nextBtn = document.getElementById('nextSlideBtn');
 
     let currentModuleId = 'm1';
-    let currentSlideIndex = 0;
+    let currentSlide = 0;
 
-    function renderModuleList() {
-      moduleListEl.innerHTML = '';
+    // Отрисовка вкладок
+    function renderTabs() {
+      tabContainer.innerHTML = '';
       modules.forEach(mod => {
-        const li = document.createElement('li');
-        li.className = 'module-item' + (mod.id === currentModuleId ? ' active' : '');
-        li.innerHTML = `<span>${mod.name}</span><span class="badge">${mod.duration}</span>`;
-        li.addEventListener('click', () => setActiveModule(mod.id));
-        moduleListEl.appendChild(li);
+        const btn = document.createElement('button');
+        btn.className = 'tab-btn' + (mod.id === currentModuleId ? ' active' : '');
+        btn.textContent = mod.short;
+        btn.addEventListener('click', () => {
+          setActiveModule(mod.id);
+        });
+        tabContainer.appendChild(btn);
       });
     }
 
     function setActiveModule(moduleId) {
       currentModuleId = moduleId;
-      currentSlideIndex = 0;
+      currentSlide = 0;
       
-      document.querySelectorAll('.module-item').forEach(el => {
-        const modName = el.querySelector('span:first-child')?.innerText;
-        const mod = modules.find(m => m.name === modName);
-        if (mod && mod.id === moduleId) el.classList.add('active');
-        else el.classList.remove('active');
+      // Обновить активную вкладку
+      document.querySelectorAll('.tab-btn').forEach((btn, idx) => {
+        const mod = modules[idx];
+        if (mod.id === moduleId) btn.classList.add('active');
+        else btn.classList.remove('active');
       });
       
       const mod = modules.find(m => m.id === moduleId);
-      moduleTitleEl.textContent = mod.name;
-      moduleMetaEl.textContent = mod.meta;
+      lessonTitle.textContent = mod.name;
+      lessonMeta.textContent = mod.meta;
       updateSlide();
     }
 
     function updateSlide() {
       const slides = slidesData[currentModuleId] || [];
       if (!slides.length) {
-        slideContentEl.innerHTML = '<p>⚙️ Слайды скоро появятся</p>';
-        slideIndicator.textContent = `Слайд 0 / 0`;
+        slideContent.innerHTML = '<p>⚙️ Материалы готовятся</p>';
+        pageIndicator.textContent = `Слайд 0 / 0`;
         prevBtn.disabled = nextBtn.disabled = true;
         return;
       }
-      slideContentEl.innerHTML = slides[currentSlideIndex];
-      slideIndicator.textContent = `Слайд ${currentSlideIndex+1} / ${slides.length}`;
-      prevBtn.disabled = (currentSlideIndex === 0);
-      nextBtn.disabled = (currentSlideIndex === slides.length - 1);
+      slideContent.innerHTML = slides[currentSlide];
+      pageIndicator.textContent = `Слайд ${currentSlide+1} / ${slides.length}`;
+      prevBtn.disabled = (currentSlide === 0);
+      nextBtn.disabled = (currentSlide === slides.length - 1);
     }
 
     prevBtn.addEventListener('click', () => {
-      if (currentSlideIndex > 0) { currentSlideIndex--; updateSlide(); }
+      if (currentSlide > 0) { currentSlide--; updateSlide(); }
     });
     nextBtn.addEventListener('click', () => {
       const slides = slidesData[currentModuleId];
-      if (currentSlideIndex < slides.length - 1) { currentSlideIndex++; updateSlide(); }
+      if (currentSlide < slides.length - 1) { currentSlide++; updateSlide(); }
+    });
+
+    // Свайпы для тач-устройств
+    let touchStart = 0;
+    slideContent.addEventListener('touchstart', e => { touchStart = e.changedTouches[0].screenX; }, {passive: true});
+    slideContent.addEventListener('touchend', e => {
+      if (!touchStart) return;
+      const diff = e.changedTouches[0].screenX - touchStart;
+      if (Math.abs(diff) > 50) {
+        const slides = slidesData[currentModuleId];
+        if (diff < 0 && currentSlide < slides.length-1) { currentSlide++; updateSlide(); }
+        else if (diff > 0 && currentSlide > 0) { currentSlide--; updateSlide(); }
+      }
+      touchStart = 0;
     });
 
     // Инициализация
-    renderModuleList();
+    renderTabs();
     setActiveModule('m1');
-
-    // Свайпы (для тачскринов)
-    let touchStartX = 0;
-    slideContentEl.addEventListener('touchstart', e => { touchStartX = e.changedTouches[0].screenX; }, {passive: true});
-    slideContentEl.addEventListener('touchend', e => {
-      if (!touchStartX) return;
-      const diff = e.changedTouches[0].screenX - touchStartX;
-      if (Math.abs(diff) > 50) {
-        if (diff < 0 && currentSlideIndex < slidesData[currentModuleId].length-1) { currentSlideIndex++; updateSlide(); }
-        else if (diff > 0 && currentSlideIndex > 0) { currentSlideIndex--; updateSlide(); }
-      }
-      touchStartX = 0;
-    });
   })();
 </script>
 </body>
