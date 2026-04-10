@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+  <title>🧠 Профилактика радикализации · 9 часов · Слайды</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', 'Roboto', system-ui, sans-serif;
+      background: #f1f5f9;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      padding: 16px;
+    }
+
+    .app {
+      max-width: 1300px;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      background: white;
+      border-radius: 32px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+      overflow: hidden;
+    }
+
+    /* header */
+    .header {
+      background: #0b2b4a;
+      color: white;
+      padding: 20px 28px;
+    }
+    .header h1 {
+      font-weight: 500;
+      font-size: 1.9rem;
+      letter-spacing: -0.01em;
+    }
+    .header p {
+      opacity: 0.8;
+      margin-top: 6px;
+      font-size: 1rem;
+    }
+
+    /* main layout: sidebar + content */
+    .main-panel {
+      display: flex;
+      flex: 1;
+      min-height: 600px;
+    }
+
+    /* left navigation (modules) */
+    .module-nav {
+      width: 280px;
+      background: #f8fafc;
+      border-right: 1px solid #e2e8f0;
+      padding: 24px 0;
+      overflow-y: auto;
+    }
+    .module-nav h3 {
+      padding: 0 20px 12px;
+      font-weight: 600;
+      color: #1e293b;
+      font-size: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .module-list {
+      list-style: none;
+    }
+    .module-item {
+      padding: 14px 20px;
+      margin: 4px 8px;
+      border-radius: 16px;
+      font-weight: 500;
+      color: #334155;
+      cursor: pointer;
+      transition: all 0.15s;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .module-item .badge {
+      background: #cbd5e1;
+      color: #0f172a;
+      border-radius: 40px;
+      padding: 2px 10px;
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+    .module-item:hover {
+      background: #e6edf5;
+    }
+    .module-item.active {
+      background: #0b2b4a;
+      color: white;
+    }
+    .module-item.active .badge {
+      background: #3b82f6;
+      color: white;
+    }
+
+    /* right content — slides area */
+    .slides-area {
+      flex: 1;
+      padding: 28px 32px;
+      background: white;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .module-title {
+      font-size: 2rem;
+      font-weight: 600;
+      color: #0b2b4a;
+      margin-bottom: 8px;
+    }
+    .module-meta {
+      display: flex;
+      gap: 20px;
+      color: #64748b;
+      margin-bottom: 28px;
+      border-bottom: 1px solid #e2e8f0;
+      padding-bottom: 16px;
+    }
+
+    /* slide container */
+    .slide-container {
+      flex: 1;
+      background: #f9f9fc;
+      border-radius: 24px;
+      padding: 24px 30px;
+      box-shadow: inset 0 2px 6px rgba(0,0,0,0.02), 0 6px 12px -6px rgba(0,0,0,0.1);
+      border: 1px solid #eef2f6;
+      margin-bottom: 20px;
+    }
+
+    .slide-content {
+      min-height: 300px;
+    }
+
+    .slide-content h2 {
+      font-size: 1.8rem;
+      color: #0b2b4a;
+      margin-bottom: 20px;
+      border-left: 6px solid #2563eb;
+      padding-left: 20px;
+    }
+    .slide-content h3 {
+      font-size: 1.3rem;
+      margin: 20px 0 10px;
+      color: #1e293b;
+    }
+    .slide-content ul, .slide-content ol {
+      padding-left: 28px;
+      margin: 15px 0;
+      line-height: 1.6;
+    }
+    .slide-content li {
+      margin-bottom: 8px;
+    }
+    .slide-content p {
+      line-height: 1.6;
+      margin-bottom: 16px;
+      color: #334155;
+    }
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 16px;
+      margin: 20px 0;
+    }
+    .info-card {
+      background: white;
+      border-radius: 20px;
+      padding: 18px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.02);
+      border: 1px solid #e9edf2;
+    }
+    .info-card strong {
+      display: block;
+      font-size: 1.2rem;
+      margin-bottom: 8px;
+      color: #0b2b4a;
+    }
+    .highlight {
+      background: #e6f0ff;
+      padding: 16px 20px;
+      border-radius: 20px;
+      margin: 20px 0;
+      border-left: 4px solid #2563eb;
+    }
+
+    /* pagination controls */
+    .slide-controls {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 8px;
+    }
+    .nav-buttons {
+      display: flex;
+      gap: 12px;
+    }
+    .nav-btn {
+      background: white;
+      border: 1px solid #cbd5e1;
+      border-radius: 40px;
+      padding: 8px 20px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: 0.1s;
+      color: #1e293b;
+    }
+    .nav-btn:hover {
+      background: #0b2b4a;
+      color: white;
+      border-color: #0b2b4a;
+    }
+    .nav-btn:disabled {
+      opacity: 0.4;
+      pointer-events: none;
+    }
+    .slide-indicator {
+      font-weight: 500;
+      color: #475569;
+    }
+
+    .footer-note {
+      margin-top: 8px;
+      font-size: 0.8rem;
+      color: #94a3b8;
+      text-align: right;
+    }
+
+    /* responsive */
+    @media (max-width: 700px) {
+      .main-panel {
+        flex-direction: column;
+      }
+      .module-nav {
+        width: 100%;
+        border-right: none;
+        border-bottom: 1px solid #e2e8f0;
+        padding: 12px 0;
+      }
+      .module-list {
+        display: flex;
+        flex-wrap: wrap;
+        padding: 0 8px;
+      }
+      .module-item {
+        flex: 1 0 auto;
+        margin: 4px;
+      }
+      .slides-area {
+        padding: 20px 16px;
+      }
+      .module-title {
+        font-size: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="app">
+  <div class="header">
+    <h1>🛡️ Профилактика радикализации и деструктивных установок</h1>
+    <p>Повышение квалификации · 9 академических часов · Практикум для психологов и педагогов</p>
+  </div>
+  <div class="main-panel">
+    <!-- Левая панель: модули -->
+    <div class="module-nav">
+      <h3>📚 Модули (9 ч)</h3>
+      <ul class="module-list" id="moduleList">
+        <!-- Заполняется JS, но статично тоже можно -->
+      </ul>
+    </div>
+
+    <!-- Правая область: слайды -->
+    <div class="slides-area" id="slidesArea">
+      <div class="module-title" id="moduleTitle">Занятие 1</div>
+      <div class="module-meta" id="moduleMeta">⏱️ 2 часа · Теория и диагностика</div>
+      <div class="slide-container">
+        <div class="slide-content" id="slideContent">
+          <!-- динамический контент -->
+        </div>
+      </div>
+      <div class="slide-controls">
+        <div class="nav-buttons">
+          <button class="nav-btn" id="prevSlideBtn">← Предыдущий</button>
+          <button class="nav-btn" id="nextSlideBtn">Следующий →</button>
+        </div>
+        <div class="slide-indicator" id="slideIndicator">Слайд 1 / 5</div>
+      </div>
+      <div class="footer-note">
+        💡 Листайте слайды внутри занятия. Выберите другой модуль слева.
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  (function(){
+    'use strict';
+
+    // ---------- ДАННЫЕ МОДУЛЕЙ И СЛАЙДОВ ----------
+    const modules = [
+      { id: 'm1', name: '1. Теория и структура', duration: '2 ч', meta: '⏱️ 2 часа · Факторы риска, диагностика, контакт' },
+      { id: 'm2', name: '2. Бинарное мышление и ценности', duration: '1.5 ч', meta: '⏱️ 1.5 ч · Занятия 1–2 (Спектр, Кто я)' },
+      { id: 'm3', name: '3. Эмпатия и потребности', duration: '1.5 ч', meta: '⏱️ 1.5 ч · Занятия 3–4 (Другой, Пирамида)' },
+      { id: 'm4', name: '4. Манипуляции и цена насилия', duration: '1.5 ч', meta: '⏱️ 1.5 ч · Занятия 5–6 (Стоп-мыслитель, Круги)' },
+      { id: 'm5', name: '5. Идентичность и будущее', duration: '1.5 ч', meta: '⏱️ 1.5 ч · Занятия 7–9 (Ресурсы, Дилеммы, Карта)' },
+      { id: 'm6', name: '6. Итоговая аттестация', duration: '1 ч', meta: '⏱️ 1 час · Зачёт, демонстрация, сертификаты' }
+    ];
+
+    // Слайды для каждого модуля (массив строк HTML)
+    const slidesData = {
+      m1: [
+        `<h2>📌 Занятие 1 · Теоретические основы</h2>
+         <p><strong>Темы:</strong> факторы радикализации, логика программы, диагностика, работа с сопротивлением.</p>
+         <div class="highlight">🔍 <strong>Когнитивная vs поведенческая радикализация</strong> (Хломов К.Д.) — усвоение идей ≠ участие в насилии.</div>
+         <h3>🧩 Трёхуровневая модель уязвимости</h3>
+         <ul><li><strong>Индивидуальный:</strong> кризис идентичности, чёрно-белое мышление, неудовлетворённые потребности.</li>
+         <li><strong>Социальный:</strong> давление группы, поиск «семьи», онлайн-сообщества.</li>
+         <li><strong>Структурный:</strong> дискриминация, несправедливость.</li></ul>`,
+        
+        `<h2>📋 Структура подростковой программы (9 занятий)</h2>
+         <div class="card-grid">
+           <div class="info-card"><strong>1–3</strong> Мышление, ценности, эмпатия<br>«Спектр», «Кто я?», «Другой как я»</div>
+           <div class="info-card"><strong>4–6</strong> Потребности, манипуляции, насилие<br>«Пирамида», «Осторожно», «Цена»</div>
+           <div class="info-card"><strong>7–9</strong> Интеграция и будущее<br>«Разнообразие», «Ответственность», «Мой путь»</div>
+         </div>
+         <h3>📊 Диагностический минимум</h3>
+         <ul><li>Шкала ксенофобских установок (ОКУ, Гурина)</li><li>Опросник Басса-Дарки (агрессия)</li><li>Шкала бинарного мышления</li><li>Экспресс-диагностика эмпатии (Юсупов)</li><li>Скрининг акцентуаций (Личко)</li></ul>`,
+        
+        `<h2>🤝 Установление контакта и сопротивление</h2>
+         <p><strong>Принципы:</strong> безоценочность, конфиденциальность, клиентоцентрированность.</p>
+         <div class="highlight">🛡️ Стратегии при сопротивлении:
+           <ul><li>Молчание → нормализация, альтернативы (рисунок).</li>
+           <li>Обесценивание → присоединение, прояснение.</li>
+           <li>Агрессия → отражение чувств, удержание границ.</li>
+         </ul></div>
+         <h3>📎 Практическая работа с кейсами</h3>
+         <p>Определить факторы уязвимости и выбрать методики диагностики.</p>`,
+        
+        `<h2>🧪 Кейс-пример (Алексей, 15 лет)</h2>
+         <p>Закрытые группы, высказывания «слабакам не место», напряжённые отношения с родителями.</p>
+         <ul><li>Факторы: кризис идентичности, ч/б мышление, потребность в принадлежности.</li>
+         <li>Методики: ОКУ, Басса-Дарки, шкала бинарного мышления, скрининг акцентуаций.</li></ul>
+         <p><em>Обсуждение в парах: 15 минут.</em></p>`,
+        
+        `<h2>📚 Итоги 1-го занятия</h2>
+         <p>✔️ Разобрали факторы радикализации и мишени профилактики.<br>✔️ Знаем структуру программы и диагностику.<br>✔️ Освоили приёмы работы с сопротивлением.</p>
+         <p><strong>Домашнее задание:</strong> подготовиться к практикуму — вспомнить техники активного слушания.</p>`
+      ],
+      m2: [
+        `<h2>🎯 Занятие 2 · Бинарное мышление и ценности</h2>
+         <h3>Упражнение «Карта спектра»</h3>
+         <p><strong>Цель:</strong> показать множество альтернатив между агрессией и бездействием.</p>
+         <p>🔹 Линия, левый край – агрессия, правый – избегание. Подросток заполняет 10+ вариантов.</p>
+         <p><em>Пример: конфликт с соседкой из-за музыки.</em></p>`,
+        
+        `<h2>🗺️ «Карта спектра» – демонстрация</h2>
+         <p>Психолог задаёт вопросы, не оценивает идеи. Визуализация на доске.</p>
+         <div class="highlight">💬 «Какой вариант самый реалистичный? Почему в гневе мы не видим середину?»</div>
+         <p>После – отработка в парах с карточками ситуаций (10 мин).</p>`,
+        
+        `<h2>🔄 «Круги идентичности»</h2>
+         <p><strong>Цель:</strong> показать многогранность «Я», снизить страх потери радикальной роли.</p>
+         <p>В центре «Я», вокруг круги: сын, друг, спортсмен, музыкант… Размер = важность.</p>
+         <p>Вопрос: «Если один круг исчезнет, кто ты?»</p>`,
+        
+        `<h2>💎 «Магазин ценностей»</h2>
+         <p>Набор из 20 карточек. Выбрать 5 → 3 → 1 самую важную ценность.</p>
+         <p><strong>Ключевой вопрос:</strong> «Можно ли достичь этой ценности через насилие?»</p>
+         <p>Пример: «справедливость» – убивая других? «безопасность» – уничтожая «чужих»?</p>`,
+        
+        `<h2>📝 Трудности и памятка</h2>
+         <ul><li>Если «не знаю» – предложить пофантазировать.</li><li>Если выбирает «силу» – уточнить: «Что значит сила? Кого считаешь сильным?»</li></ul>
+         <p>✅ Раздали памятку «Типичные трудности».</p>`
+      ],
+      m3: [
+        `<h2>🤲 Занятие 3 · Эмпатия и потребности</h2>
+         <h3>«Точка зрения»</h3>
+         <p>Анализ конфликта (в автобусе) от лица всех участников: жертва, агрессор, наблюдатель.</p>
+         <p>Вопросы: «Что чувствует? Чего хочет?»</p>`,
+        
+        `<h2>📸 «Интервью с незнакомцем»</h2>
+         <p>Фото человека из стигматизированной группы. Подросток — журналист, задаёт 5–7 вопросов.</p>
+         <p>Психолог отвечает от лица персонажа, разрушая стереотипы.</p>
+         <div class="highlight">🗣️ «Я ношу хиджаб по своему выбору, для меня это символ веры».</div>`,
+        
+        `<h2>🏔️ «Моя пирамида» (Маслоу)</h2>
+         <p>Оценка удовлетворённости 5 уровней (1–10).</p>
+         <p>Связь «голодных» потребностей с обещаниями радикалов: безопасность, принадлежность, уважение, смысл.</p>
+         <p><strong>Поиск здоровых альтернатив:</strong> спорт, волонтёрство, кружки.</p>`,
+        
+        `<h2>🛠️ Отработка в парах</h2>
+         <p>Каждый пробует провести одно из упражнений с «подростком».</p>
+         <p>Обсуждение: как удержаться от оценок, что делать при отрицании потребностей.</p>`,
+        
+        `<h2>📌 Памятка: эмпатия и потребности</h2>
+         <ul><li>Не морализировать, задавать открытые вопросы.</li><li>Если «всё нормально» — спросить о желаниях.</li></ul>`
+      ],
+      m4: [
+        `<h2>⚠️ Занятие 4 · Манипуляции и цена насилия</h2>
+         <h3>«Анатомия манипуляции»</h3>
+         <p>Приёмы: эмоциональное давление, ч/б, ярлыки, образ врага, апелляция к авторитету.</p>
+         <p>Анализ постов: «Они отнимают наши рабочие места!»</p>`,
+        
+        `<h2>🛑 «Стоп-мыслитель»</h2>
+         <p>4 вопроса: Что чувствую? На что давят? Какие факты? Кому выгодно?</p>
+         <div class="highlight">💡 «Если ты не с нами — предатель» → пауза, анализ.</div>
+         <p>Тренировка на фразах в парах.</p>`,
+        
+        `<h2>🎭 Ролевая игра «Вербовщик и мишень»</h2>
+         <p>Психолог — вербовщик, подросток учится противостоять (задавать вопросы, не вестись на лесть).</p>
+         <p>После — обязательное обсуждение чувств и выход из роли.</p>`,
+        
+        `<h2>💔 «Круги последствий»</h2>
+         <p>Центр: акт насилия. Круги: Жертва, Насильник, Общество.</p>
+         <p>Подросток заполняет последствия: боль, вина, полиция, разрушенные семьи.</p>
+         <p>Вывод: насилие — не сила, а источник потерь.</p>`,
+        
+        `<h2>📋 Памятка: манипуляции и насилие</h2>
+         <ul><li>Не спорить о содержании, анализировать форму.</li><li>Апеллировать к личным последствиям для подростка.</li></ul>`
+      ],
+      m5: [
+        `<h2>🌟 Занятие 5 · Идентичность и будущее</h2>
+         <h3>«Карта ресурсов»</h3>
+         <p>В центре потребности, вокруг сферы (семья, друзья, хобби). Стрелками — что даёт каждая сфера.</p>
+         <p>Пример: футбол → уважение, принадлежность.</p>`,
+        
+        `<h2>⚖️ «Моральные дилеммы»</h2>
+         <p>Ситуация: друг просит соврать родителям. Варианты, последствия, ответственный выбор.</p>
+         <p>Без «правильных» ответов — учим анализировать.</p>`,
+        
+        `<h2>🗺️ «Ресурсная карта» и ритуал</h2>
+         <p>Конкретные имена, места, занятия, телефоны доверия.</p>
+         <p>Символическое прощание: свеча, сертификат, слова поддержки.</p>`,
+        
+        `<h2>📦 «Контракт с собой»</h2>
+         <p>Подросток пишет обязательства: как поступать при провокациях, к кому обратиться.</p>`,
+        
+        `<h2>✅ Завершение программы</h2>
+         <p>Интеграция опыта, профилактика рецидивов. Подросток уходит с планом поддержки.</p>`
+      ],
+      m6: [
+        `<h2>🎓 Итоговая аттестация (1 час)</h2>
+         <p><strong>Формат:</strong> демонстрация фрагмента упражнения (5 мин) + самоанализ (2 мин).</p>
+         <p>Критерии: ясность инструкции, гибкость, безоценочность, рефлексия.</p>`,
+        
+        `<h2>📊 Критерии оценки</h2>
+         <ul><li>Точность инструкции</li><li>Соответствие цели</li><li>Реакция на ответы «подростка»</li><li>Владение открытыми вопросами</li><li>Качество самоанализа</li></ul>
+         <p>7–10 баллов = зачтено.</p>`,
+        
+        `<h2>🏅 Вручение сертификатов</h2>
+         <p>Каждый слушатель получает сертификат о прохождении 9-часового курса.</p>
+         <p>Поздравление и напутствие.</p>`,
+        
+        `<h2>📚 Рекомендации</h2>
+         <p>Использовать полный комплект материалов программы для подростков.</p>
+         <p>При трудностях — супервизия, обращение к методистам.</p>`,
+        
+        `<h2>✨ Спасибо за работу!</h2>
+         <p>Вы готовы проводить индивидуальную профилактику радикализации.</p>
+         <p><strong>Детский телефон доверия: 8-800-2000-122</strong></p>`
+      ]
+    };
+
+    // ---------- СОСТОЯНИЕ ----------
+    let currentModuleId = 'm1';
+    let currentSlideIndex = 0;
+
+    // DOM элементы
+    const moduleListEl = document.getElementById('moduleList');
+    const moduleTitleEl = document.getElementById('moduleTitle');
+    const moduleMetaEl = document.getElementById('moduleMeta');
+    const slideContentEl = document.getElementById('slideContent');
+    const slideIndicator = document.getElementById('slideIndicator');
+    const prevBtn = document.getElementById('prevSlideBtn');
+    const nextBtn = document.getElementById('nextSlideBtn');
+
+    // Рендер списка модулей
+    function renderModuleList() {
+      moduleListEl.innerHTML = '';
+      modules.forEach(mod => {
+        const li = document.createElement('li');
+        li.className = 'module-item' + (mod.id === currentModuleId ? ' active' : '');
+        li.innerHTML = `<span>${mod.name}</span><span class="badge">${mod.duration}</span>`;
+        li.addEventListener('click', () => {
+          setActiveModule(mod.id);
+        });
+        moduleListEl.appendChild(li);
+      });
+    }
+
+    // Установка активного модуля
+    function setActiveModule(moduleId) {
+      currentModuleId = moduleId;
+      currentSlideIndex = 0;
+      
+      // Обновить активный класс в списке
+      document.querySelectorAll('.module-item').forEach(el => {
+        const spans = el.querySelectorAll('span');
+        const moduleName = spans[0]?.innerText || '';
+        const mod = modules.find(m => m.name === moduleName);
+        if (mod && mod.id === moduleId) {
+          el.classList.add('active');
+        } else {
+          el.classList.remove('active');
+        }
+      });
+      
+      const mod = modules.find(m => m.id === moduleId);
+      moduleTitleEl.textContent = mod.name;
+      moduleMetaEl.textContent = mod.meta;
+      
+      updateSlide();
+    }
+
+    // Обновление слайда
+    function updateSlide() {
+      const slides = slidesData[currentModuleId] || [];
+      if (slides.length === 0) {
+        slideContentEl.innerHTML = '<p>Слайды в разработке</p>';
+        slideIndicator.textContent = `Слайд 0 / 0`;
+        prevBtn.disabled = true;
+        nextBtn.disabled = true;
+        return;
+      }
+      
+      slideContentEl.innerHTML = slides[currentSlideIndex];
+      slideIndicator.textContent = `Слайд ${currentSlideIndex+1} / ${slides.length}`;
+      
+      prevBtn.disabled = (currentSlideIndex === 0);
+      nextBtn.disabled = (currentSlideIndex === slides.length - 1);
+    }
+
+    // Обработчики кнопок
+    prevBtn.addEventListener('click', () => {
+      const slides = slidesData[currentModuleId];
+      if (currentSlideIndex > 0) {
+        currentSlideIndex--;
+        updateSlide();
+      }
+    });
+    
+    nextBtn.addEventListener('click', () => {
+      const slides = slidesData[currentModuleId];
+      if (currentSlideIndex < slides.length - 1) {
+        currentSlideIndex++;
+        updateSlide();
+      }
+    });
+
+    // Инициализация
+    renderModuleList();
+    // По умолчанию активен m1
+    setActiveModule('m1');
+
+    // Поддержка свайпов (очень просто)
+    let touchStartX = 0;
+    slideContentEl.addEventListener('touchstart', (e) => {
+      touchStartX = e.changedTouches[0].screenX;
+    }, {passive: true});
+    slideContentEl.addEventListener('touchend', (e) => {
+      if (!touchStartX) return;
+      const diff = e.changedTouches[0].screenX - touchStartX;
+      if (Math.abs(diff) > 50) {
+        if (diff < 0) {
+          // свайп влево -> следующий
+          const slides = slidesData[currentModuleId];
+          if (currentSlideIndex < slides.length - 1) {
+            currentSlideIndex++;
+            updateSlide();
+          }
+        } else {
+          // свайп вправо -> предыдущий
+          if (currentSlideIndex > 0) {
+            currentSlideIndex--;
+            updateSlide();
+          }
+        }
+      }
+      touchStartX = 0;
+    });
+
+  })();
+</script>
+</body>
+</html>
